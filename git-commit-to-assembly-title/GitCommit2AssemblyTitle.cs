@@ -101,7 +101,7 @@ namespace Vostok.Tools.GitCommit2AssemblyTitle
                         ? File.GetLastWriteTime(assemblyTitleFileName)
                         : DateTime.Now;
 
-                    File.WriteAllText(assemblyTitleFileName, newContent);
+                    File.WriteAllText(assemblyTitleFileName, newContent, Encoding.UTF8);
                     File.SetLastWriteTime(assemblyTitleFileName, lastWriteTime);
 
                     return;
@@ -131,6 +131,8 @@ namespace Vostok.Tools.GitCommit2AssemblyTitle
                 WorkingDirectory = Directory.GetCurrentDirectory(),
                 RedirectStandardError = true,
                 RedirectStandardOutput = true,
+                StandardOutputEncoding = Encoding.UTF8,
+                StandardErrorEncoding = Encoding.UTF8
             };
             log(command + " " + args);
             var output = new StringBuilder();
